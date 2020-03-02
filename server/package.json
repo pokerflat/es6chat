@@ -1,0 +1,17 @@
+{
+  "name": "chatbot",
+  "version": "1.0.0",
+  "description": "Chat bot for the frontend homework.",
+  "main": "chatServer.js",
+  "scripts": {
+    "start": "node chatServer.js"
+  },
+  "author": "Aleksandr Mitrofanov",
+  "license": "ISC",
+  "dependencies": {
+    "socket.io": "^2.2.0"
+  },
+  "keywords": [
+    "chat"
+  ]
+}
