@@ -9,15 +9,15 @@ function handler (req, res) {
 }
 
 function welcomeText(socket) {
-  socket.emit('messageToClient', { message: 'Hi my friend o/ Good luck!', user: 'chatBot2000' });
+  socket.emit('message', { message: 'Hi my friend o/ Good luck!', user: 'chatBot2000' });
 }
 
 io.on('connection', function (socket) {
-  setInterval(welcomeText, 1500, socket);
-  console.log('Подключено!');   // Добавил для понимания, что подключились
+  setInterval(welcomeText, 5000, socket);
+ // console.log('Подключено!');   // Добавил для понимания, что подключились
 
-  socket.on('messageToServer', function (data) {
+  socket.on('message', function (data) {
     console.log(data);    // Добавил для понимания, что вывводится в консоль сервера
-    socket.emit('messageToClient', { message: data.message, user: data.user });
+    socket.emit('message', { message: data.message, user: data.user });
   });
 });

@@ -1,52 +1,36 @@
 
 
-   
-   import {socket} from './client.js';
-  
 
-    function test () {
-    console.log('Privet');
-   }
-   test ();
+import {socket} from './client.js';
+import {inputMsg, inputUser} from './uielements.js';
 
-    socket.on('connect', function() {
-    console.log('Подключились к серверу');
-    });
+socket.on('connect', function() {
+console.log('Подключились к серверу');
+});
+
+socket.on('message', function (data) {
+    console.log(data);
+    function createBotMsg() {
+        let newDivBot=document.createElement('div');
+        newDivBot.innerHTML=(data.user+': '+data.message);
+        document.getElementById('main_field').appendChild(newDivBot);
+    }
+    createBotMsg()
+});
+
+
+
+send_button.onclick = function() { 
     
-
-  
-    socket.on('messageToClient', function (data) {
-        console.log(data);
-        function createBotMsg() {
-            let newDivBot=document.createElement('div');
-            newDivBot.innerHTML=(data.user+': '+data.message);
-            document.getElementById('main_field').appendChild(newDivBot);
-        }
-        createBotMsg()
-    });
+    //socket.emit('messageToServer', {message: inputMsg.value, user: inputUser.value});
 
     
+};  
 
-    send_button.onclick = function() { 
-
-        let message= {
-            message: '',
-            user: ''
-        }; 
-
-        import {message.message, message.user} from './uielements.js';
-        
-        socket.emit('messageToServer', {message: message.message, user: name});
-        console.log(message);
- 
-        function createUserMsg() {
-            let newDiv=document.createElement('div');
-            newDiv.innerHTML=(message.user+': '+message.message);
-            document.getElementById('main_field').appendChild(newDiv);
-        }
-
-        createUserMsg();   
-        
-
-    };  
+/*function createUserMsg() {
+    let newDiv=document.createElement('div');
+    newDiv.innerHTML=(message.user+': '+message.message);
+    document.getElementById('main_field').appendChild(newDiv);
+}
+createUserMsg();  */
 
