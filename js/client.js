@@ -1,0 +1,1 @@
+export let socket = io('localhost:8080');

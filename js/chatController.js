@@ -1,9 +1,13 @@
 
-   let socket = io('http://localhost:8080');
 
-    export function test () {
+   
+   import {socket} from './client.js';
+  
+
+    function test () {
     console.log('Privet');
    }
+   test ();
 
     socket.on('connect', function() {
     console.log('Подключились к серверу');
@@ -11,7 +15,7 @@
     
 
   
-    socket.on('message_to_client', function (data) {
+    socket.on('messageToClient', function (data) {
         console.log(data);
         function createBotMsg() {
             let newDivBot=document.createElement('div');
@@ -21,19 +25,20 @@
         createBotMsg()
     });
 
-    send_button.onclick = function() { 
-        let message= {
-             message: '',
-             user: ''
-         };
-
-        message.message=document.getElementById('message').value;   
-        message.user=document.getElementById('chatname').value; 
-        socket.emit('message_to_server', {message: message.message, user: name});
-        console.log(message);
-        
-        
     
+
+    send_button.onclick = function() { 
+
+        let message= {
+            message: '',
+            user: ''
+        }; 
+
+        import {message.message, message.user} from './uielements.js';
+        
+        socket.emit('messageToServer', {message: message.message, user: name});
+        console.log(message);
+ 
         function createUserMsg() {
             let newDiv=document.createElement('div');
             newDiv.innerHTML=(message.user+': '+message.message);
