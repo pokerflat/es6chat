@@ -1,4 +1,4 @@
-function chatbot_msg(text_msg) {
+/*function chatbot_msg(text_msg) {
     let msg = (text_msg);
     let el = document.getElementById('bot_message');
     el.innerText = msg;
@@ -10,7 +10,7 @@ function div_create(div_msg) {
     new_div.innerHTML=('Bot: '+div_msg);
     document.getElementById('main_field').appendChild(new_div);
 }
-div_create('Это второе сообщение');
+div_create('Это второе сообщение'); */
 
 
 
