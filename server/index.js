@@ -18,6 +18,6 @@ io.on('connection', function (socket) {
 
   socket.on('message', function (data) {
     console.log(data);    // Добавил для понимания, что вывводится в консоль сервера
-    socket.emit('message', { message: data.message, user: data.user });
+     socket.emit('message', { message: data.message, user: data.user });
   });
 });
