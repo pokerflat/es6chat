@@ -6,8 +6,8 @@ export function prepareMsg () {
     if (inputMsg.value.length==0) {
         alert('Сообщение пустое');
     }
-    else {
+    else {      
         socket.emit('message', {message: inputMsg.value, user: inputUser.value}); 
-        inputMsg.value='';      //очищаем поле после отправки
+        //inputMsg.value='';      //очищаем поле после отправки
     }
 }
