@@ -14,10 +14,9 @@ function welcomeText(socket) {
 
 io.on('connection', function (socket) {
   setInterval(welcomeText, 5000, socket);
- // console.log('Подключено!');   // Добавил для понимания, что подключились
 
   socket.on('message', function (data) {
-    console.log(data);    // Добавил для понимания, что вывводится в консоль сервера
+    console.log(data);   
      socket.emit('message', { message: data.message, user: data.user });
   });
 });
