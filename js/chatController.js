@@ -17,7 +17,7 @@ export function msgToChat11(socket) {
 }
 
 socket.on('message', function (data) {    
-    makeElement();
+    makeElement(data);
     /*let newMessage=document.createElement('div');
     newMessage.innerText=(data.user+': '+data.message.trim());
     document.getElementById('main_field').appendChild(newMessage);    Рабочий вариант, удалю как сделаю в chatView */   
