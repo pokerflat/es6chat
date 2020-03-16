@@ -59,7 +59,7 @@ body {
   margin-bottom: 16px;
 }
 
-.user_name_message {
+#user_name_message {
   display: flex;
   align-self: flex-end;
   margin-bottom: 16px;

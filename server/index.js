@@ -10,7 +10,7 @@ function handler(req, res) {
 
 function welcomeText(socket) {
   socket.emit("message", {
-    message: "Hi my friend o/ Good luck!",
+    message: "Hi S",
     user: "chatBot2000"
   });
 }
