@@ -10,7 +10,13 @@
   </head>
   <body>
     <div class="wrapper">
-      <input type="text" id="username" placeholder="Your chat name" />
+      <input
+        type="text"
+        id="username"
+        required
+        minlength="2"
+        placeholder="Your chat name"
+      />
       <div id="main_field">
         <div class="bot_name">Bot:</div>
         <div id="bot_message"></div>
