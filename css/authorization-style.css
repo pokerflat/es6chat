@@ -1,0 +1,107 @@
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  src: url("./fonts/roboto-v20-latin_cyrillic-regular.eot");
+  src: local("Roboto"), local("Roboto-Regular"),
+    url("./fonts/roboto-v20-latin_cyrillic-regular.eot?#iefix")
+      format("embedded-opentype"),
+    url("./fonts/roboto-v20-latin_cyrillic-regular.woff2") format("woff2"),
+    url("./fonts/roboto-v20-latin_cyrillic-regular.woff") format("woff"),
+    url("./fonts/roboto-v20-latin_cyrillic-regular.ttf") format("truetype"),
+    url("./fonts/roboto-v20-latin_cyrillic-regular.svg#Roboto") format("svg");
+}
+
+body {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  color: #000000;
+}
+
+p {
+  margin: 0;
+}
+
+.wrapper_popup {
+  display: flex;
+  flex-direction: column;
+  width: 273px;
+  height: 319px;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding-left: 14px;
+  padding-right: 14px;
+  background: #ffffff;
+}
+
+#login {
+  width: 245px;
+  height: 32px;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  font-family: Roboto;
+  font-size: 16px;
+  line-height: 19px;
+  padding: 8px;
+  margin-bottom: 8px;
+}
+
+#password {
+  width: 245px;
+  height: 32px;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  font-family: Roboto;
+  font-size: 16px;
+  line-height: 19px;
+  padding: 8px;
+  margin-bottom: 16px;
+}
+
+#enter_button {
+  font-family: Roboto;
+  font-size: 16px;
+  line-height: 19px;
+  width: 84px;
+  height: 32px;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  background: #ffffff;
+  color: #000000;
+  margin-bottom: 34px;
+}
+
+#access {
+  margin-top: 40px;
+}
+
+#authorization {
+  margin-top: 16px;
+  display: flex;
+}
+
+#access_field {
+  margin-bottom: 8px;
+}
+
+#modalAuth {
+  display: none;
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+.registration {
+  margin: 0 auto;
+}

@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chat</title>
     <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="/css/create-accaunt-style.css" />
+    <link rel="stylesheet" href="/css/authorization-style.css" />
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
     <script type="module" src="./js/index.js"></script>
   </head>
@@ -28,5 +31,38 @@
         <input id="sendFile" type="file" value="..." />
       </div>
     </div>
+
+    <div id="modalLogIn">
+      <div class="wrapper_popup">
+        <div id="createacc">
+          <p>Создать аккаунт</p>
+        </div>
+        <div id="access">
+          <p id="access_field">Имя(логин)</p>
+          <input type="text" id="login" />
+          <p id="access_field">Пароль</p>
+          <input type="text" id="password" />
+          <input id="create_button" type="submit" value="Создать" />
+        </div>
+        <span class="enter">У меня уже есть аккаунт(войти)</span>
+      </div>
+    </div>
+
+    <div id="modalAuth">
+      <div class="wrapper_popup">
+        <div id="authorization">
+          <p>Авторизация</p>
+        </div>
+        <div id="access">
+          <p id="access_field">Имя(логин)</p>
+          <input type="text" id="login" />
+          <p id="access_field">Пароль</p>
+          <input type="text" id="password" />
+          <input id="enter_button" type="submit" value="Войти" />
+        </div>
+        <span class="registration">Регистрация</span>
+      </div>
+    </div>
+    <script src="/js/login.js"></script>
   </body>
 </html>
