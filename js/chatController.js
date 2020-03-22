@@ -1,6 +1,7 @@
 import { socket } from "./client.js";
 import "./localstorage.js";
 import "./uielements.js";
+import "./apiClient.js";
 import { inputMsg, inputUser, inputFile } from "./uielements.js";
 import { createUIMessage } from "./chatView.js";
 import { createUIDate } from "./chatView.js";
