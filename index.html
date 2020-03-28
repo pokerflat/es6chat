@@ -13,6 +13,10 @@
   </head>
   <body>
     <div class="wrapper">
+      <div id="settings">
+        <input id="settings_button" type="submit" value="settings" />
+        <input id="logout_button" type="submit" value="log out" />
+      </div>
       <input
         type="text"
         id="username"
@@ -21,9 +25,9 @@
         placeholder="Your chat name"
       />
       <div id="main_field">
-        <div class="bot_name">Bot:</div>
+        <div class="bot_name"></div>
         <div id="bot_message"></div>
-        <div id="user_name_message">Имя: Добрый день!</div>
+        <div id="user_name_message"></div>
       </div>
       <div class="send_message">
         <input type="text" id="message" placeholder="message.." />
