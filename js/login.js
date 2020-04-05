@@ -13,8 +13,19 @@ spanRegistration.onclick = function() {
 };
 
 window.onclick = function(event) {
-  if (event.target == modalLogIn || event.target == modalAuth) {
+  if (
+    event.target == modalLogIn ||
+    event.target == modalAuth ||
+    event.target == modalSettings
+  ) {
     modalAuth.style.display = "none";
     modalLogIn.style.display = "none";
+    modalSettings.style.display = "none";
   }
+};
+
+var settingButton = document.getElementById("settings_button");
+
+settingButton.onclick = function() {
+  modalSettings.style.display = "block";
 };

@@ -62,16 +62,12 @@ body {
 #user_name_message {
   display: flex;
   align-self: flex-end;
-  margin-bottom: 16px;
-  background: #f7f7f7;
   padding: 8px;
 }
 
 #bot_name_message {
   display: flex;
   align-self: flex-start;
-  margin-bottom: 16px;
-  background: #f7f7f7;
   padding: 8px;
 }
 
@@ -130,4 +126,30 @@ body {
   margin-left: auto;
   font-size: 16px;
   line-height: 19px;
+}
+
+#time_style {
+  align-self: flex-end;
+  background: #f7f7f7;
+  font-family: Roboto;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 16px;
+  color: #333333;
+}
+
+#container_user {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  background: #f7f7f7;
+  margin-bottom: 8px;
+}
+#container_bot {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-end;
+  background: #f7f7f7;
+  margin-bottom: 8px;
 }

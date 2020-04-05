@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="main.css" />
     <link rel="stylesheet" href="/css/create-accaunt-style.css" />
     <link rel="stylesheet" href="/css/authorization-style.css" />
+    <link rel="stylesheet" href="/css/settings-style.css" />
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
     <script type="module" src="./js/index.js"></script>
@@ -67,6 +68,20 @@
         <span class="registration">Регистрация</span>
       </div>
     </div>
+
+    <div id="modalSettings">
+      <div class="wrapper_popup">
+        <div id="settings_popup">
+          <p>Настройки</p>
+        </div>
+        <p id="access_field">Имя в чате</p>
+        <div id="accessSettings">
+          <input type="text" id="name_in_chat" />
+          <input id="apply_name_button" type="submit" value="->" />
+        </div>
+      </div>
+    </div>
+
     <script src="/js/login.js"></script>
   </body>
 </html>
