@@ -17,7 +17,7 @@ apiRequest(URL, "get", "username=Jonh");
 
 async function createUser(URL) {
   const payload = {
-    username: "alex",
+    username: "alex333",
     password: 1234,
   };
 
@@ -28,7 +28,17 @@ async function createUser(URL) {
     },
     body: JSON.stringify(payload),
   };
-  const data = await fetch(URL + "/api/user", config);
-  console.log(data);
+
+  if (payload.username.length >= 5) {
+    let check = apiRequest(URL, "get", payload.username);
+    if (check) {
+      console.log("Такое имя уже есть");
+    } else {
+      const data = await fetch(URL + "/api/user", config);
+      console.log(data);
+    }
+  } else {
+    console.log("Имя меньше 5 символов");
+  }
 }
 createUser(URL);
