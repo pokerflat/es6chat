@@ -1,2 +1,2 @@
-import { URL } from "./config.js";
-export let socket = io(URL);
+import { serverURL } from "./config.js";
+export let socket = io(serverURL);

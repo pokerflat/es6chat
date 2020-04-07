@@ -1,26 +1,26 @@
-import { URL } from "./config.js";
+import { serverURL } from "./config.js";
 
-async function apiRequest(URL, method, params) {
-  const config = {
-    method: method,
-  };
+const payload = {
+  username: "alex335",
+  password: 1234,
+};
+
+const apiRequest = async (url, config) => {
   try {
-    const res = await fetch(URL + "/api/user?" + params, config);
-    const data = res.json();
-    console.log(data);
+    const res = await fetch(serverURL + url, config);
+    return res.json();
   } catch (err) {
     console.log("Ошибка", err);
   }
+};
+
+async function getUser() {
+  const params = "username=" + payload.username;
+  const data = await apiRequest("/api/user?" + params);
+  console.log(data);
 }
 
-apiRequest(URL, "get", "username=Jonh");
-
-async function createUser(URL) {
-  const payload = {
-    username: "alex333",
-    password: 1234,
-  };
-
+async function createUser(payload) {
   const config = {
     method: "post",
     headers: {
@@ -28,17 +28,19 @@ async function createUser(URL) {
     },
     body: JSON.stringify(payload),
   };
+  const data = await apiRequest("/api/user", config);
+  console.log(data);
+}
 
+function validateUser() {
   if (payload.username.length >= 5) {
-    let check = apiRequest(URL, "get", payload.username);
-    if (check) {
-      console.log("Такое имя уже есть");
+    if (getUser()) {
+      alert("Такое имя уже есть");
     } else {
-      const data = await fetch(URL + "/api/user", config);
-      console.log(data);
+      createUser(payload);
     }
   } else {
-    console.log("Имя меньше 5 символов");
+    alert("Имя меньше 5 символов");
   }
 }
-createUser(URL);
+validateUser();
