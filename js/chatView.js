@@ -24,7 +24,7 @@ export function createUIMessage(msg) {
   document.getElementById("main_field").appendChild(container);
 }
 
-send_button.onclick = function() {
+send_button.onclick = function () {
   if (isMsgNotEmpty(inputMsg)) {
     msgToChat(socket);
   }
