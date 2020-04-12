@@ -52,10 +52,6 @@ function validateUser() {
   }
 }
 
-create_button.onclick = function () {
-  const payload = {
-    username: inputLogin,
-  };
+createUserAccaunt.onclick = function () {
   makeUserFromPopup();
-  event.preventDefault();
 };
