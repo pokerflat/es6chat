@@ -1,12 +1,17 @@
 import { inputMsg, inputUser } from "./uielements.js";
 
-window.onload = function() {
-  let valueLocal = localStorage.getItem("key", inputMsg.value);
-  if (valueLocal != "") {
-    inputMsg.value = valueLocal;
+window.onload = function () {
+  let msgFromStorage = localStorage.getItem("StorageMessage", inputMsg.value);
+  let usernameFromStorage = localStorage.getItem(
+    "StorageUsername",
+    inputUser.value
+  );
+  if (msgFromStorage != "") {
+    inputMsg.value = msgFromStorage;
   }
+  inputUser.value = usernameFromStorage;
 };
 
-message.oninput = function() {
-  localStorage.setItem("key", inputMsg.value);
+message.oninput = function () {
+  localStorage.setItem("StorageMessage", inputMsg.value);
 };

@@ -24,7 +24,7 @@ p {
   background: #ffffff;
 }
 
-#login {
+#loginPopupAuth {
   width: 245px;
   height: 32px;
   border: 1px solid #000000;
@@ -36,7 +36,7 @@ p {
   margin-bottom: 8px;
 }
 
-#password {
+#passwordPopupAuth {
   width: 245px;
   height: 32px;
   border: 1px solid #000000;
@@ -48,7 +48,7 @@ p {
   margin-bottom: 16px;
 }
 
-#enter_button {
+#userAuthorization {
   font-family: Roboto;
   font-size: 16px;
   line-height: 19px;

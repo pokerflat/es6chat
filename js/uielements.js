@@ -1,4 +1,7 @@
 export const inputMsg = document.getElementById("message");
-export const inputUser = document.getElementById("username");
+export let inputUser = document.getElementById("username");
 export const inputFile = document.getElementById("sendFile");
 export const inputLogin = document.getElementById("loginPopup");
+export const inputPassword = document.getElementById("passwordPopup");
+export const inputLoginAuth = document.getElementById("loginPopupAuth");
+export const inputPasswordAuth = document.getElementById("passwordPopupAuth");
