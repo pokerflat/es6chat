@@ -77,7 +77,7 @@ async function AuthUser() {
     body: JSON.stringify(payloadAuth),
   };
   const data = await apiRequest("/api/user/auth", config);
-  document.cookie = data.token;
+  document.cookie = "token=" + data.token;
   localStorage.setItem("StorageUsername", inputUser.value);
 }
 
@@ -97,4 +97,26 @@ getCookie();
 function hideAllPopup() {
   modalAuth.style.display = "none";
   modalLogIn.style.display = "none";
+}
+
+logout_button.onclick = function () {
+  document.cookie = "token=;max-age=0";
+  location.reload();
+};
+
+apply_name_button.onclick = function () {
+  changeName();
+};
+
+async function changeName() {
+  let payloadNewChatname = { chatname: "vasya1" };
+  const config = {
+    method: "patch",
+    headers: {
+      Authorization: "Bearer token",
+    },
+    body: JSON.stringify(payloadNewChatname),
+  };
+  const data = await apiRequest("/api/user", config);
+  console.log(data);
 }
