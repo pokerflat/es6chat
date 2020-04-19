@@ -50,8 +50,10 @@ async function createUser(payload) {
 function makeUserFromPopup() {
   payload.username = inputLogin.value;
   payload.password = inputPassword.value;
+  inputUser.value = payload.username;
   if (validateUser()) {
     createUser(payload);
+    localStorage.setItem("StorageUsername", inputUser.value);
   }
 }
 
@@ -63,6 +65,7 @@ function validateUser() {
 
 createUserAccaunt.onclick = function () {
   makeUserFromPopup();
+  hideAllPopup();
 };
 
 async function AuthUser() {
@@ -113,7 +116,7 @@ async function changeName() {
   const config = {
     method: "patch",
     headers: {
-      Authorization: "Bearer token",
+      Authorization: "token",
     },
     body: JSON.stringify(payloadNewChatname),
   };
