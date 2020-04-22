@@ -12,17 +12,9 @@ let payload = {
   password: inputPassword.value,
 };
 
-let payloadAuth = {
-  username: inputLoginAuth.value,
-  password: inputPasswordAuth.value,
-};
-
 const apiRequest = async (url, config) => {
   try {
     const res = await fetch(serverURL + url, config);
-    if (res.status === 400) {
-      alert("Такой пользователь уже есть");
-    }
     return res.json();
   } catch (err) {
     console.log("Ошибка", err);
@@ -43,8 +35,7 @@ async function createUser(payload) {
     },
     body: JSON.stringify(payload),
   };
-  const data = await apiRequest("/api/user", config);
-  return data;
+  return apiRequest("/api/user", config);
 }
 
 function makeUserFromPopup() {
@@ -52,7 +43,9 @@ function makeUserFromPopup() {
   payload.password = inputPassword.value;
   inputUser.value = payload.username;
   if (validateUser()) {
-    createUser(payload);
+    createUser(payload).then((data) => {
+      AuthUser(payload);
+    });
     localStorage.setItem("StorageUsername", inputUser.value);
   }
 }
@@ -68,20 +61,16 @@ createUserAccaunt.onclick = function () {
   hideAllPopup();
 };
 
-async function AuthUser() {
-  payloadAuth.username = inputLoginAuth.value;
-  payloadAuth.password = inputPasswordAuth.value;
-  inputUser.value = payloadAuth.username;
+async function AuthUser(username, password) {
   const config = {
     method: "post",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(payloadAuth),
+    body: JSON.stringify({ username, password }),
   };
   const data = await apiRequest("/api/user/auth", config);
-  document.cookie = "token=" + data.token;
-  localStorage.setItem("StorageUsername", inputUser.value);
+  Cookies.set("token", data.token);
 }
 
 userAuthorization.onclick = function () {
@@ -89,13 +78,13 @@ userAuthorization.onclick = function () {
   hideAllPopup();
 };
 
-function getCookie() {
+function checkSession() {
   if (document.cookie) {
     hideAllPopup();
   }
 }
 
-getCookie();
+checkSession();
 
 function hideAllPopup() {
   modalAuth.style.display = "none";

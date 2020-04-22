@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/settings-style.css" />
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
     <script type="module" src="./js/index.js"></script>
   </head>
   <body>
@@ -43,14 +44,14 @@
           <p>Создать аккаунт</p>
         </div>
         <div id="accessLogIn">
-          <p id="access_field">Имя(логин)</p>
-
+          <p id="login_field_createuser">Имя(логин)</p>
           <input type="text" id="loginPopup" />
-          <p id="access_field">Пароль</p>
+          <p id="password_field_createuser">Пароль</p>
           <input type="text" id="passwordPopup" />
           <input id="createUserAccaunt" type="submit" value="Создать" />
         </div>
-        <span class="enter">У меня уже есть аккаунт(войти)</span>
+        <span class="enter">У меня уже есть аккаунт</span>
+        <button id="goToAuth">Войти</button>
       </div>
     </div>
 
@@ -60,9 +61,9 @@
           <p>Авторизация</p>
         </div>
         <div id="accessAuth">
-          <p id="access_field">Имя(логин)</p>
+          <p id="login_field_auth_user">Имя(логин)</p>
           <input type="text" id="loginPopupAuth" />
-          <p id="access_field">Пароль</p>
+          <p id="password_field_auth_user">Пароль</p>
           <input type="text" id="passwordPopupAuth" />
           <input id="userAuthorization" type="submit" value="Войти" />
         </div>
@@ -82,7 +83,5 @@
         </div>
       </div>
     </div>
-
-    <script src="/js/login.js"></script>
   </body>
 </html>

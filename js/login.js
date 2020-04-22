@@ -1,7 +1,7 @@
 var modalLogIn = document.getElementById("modalLogIn");
 var modal2 = document.getElementById("modalAuth");
 
-var spanEnter = document.getElementsByClassName("enter")[0];
+var spanEnter = document.getElementById("goToAuth");
 var spanRegistration = document.getElementsByClassName("registration")[0];
 
 spanEnter.onclick = function () {

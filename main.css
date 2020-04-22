@@ -99,6 +99,19 @@ body {
   line-height: 19px;
 }
 
+#goToAuth {
+  width: 81px;
+  height: 22px;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  background: #ffffff;
+  color: #000000;
+  font-size: 16px;
+  line-height: 19px;
+  margin: 0 auto;
+  margin-top: 5px;
+}
+
 #settings {
   display: flex;
   margin: 8px;
