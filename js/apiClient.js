@@ -12,11 +12,6 @@ let payload = {
   password: inputPassword.value,
 };
 
-let payloadAuth = {
-  username: inputLoginAuth.value,
-  password: inputPasswordAuth.value,
-};
-
 const apiRequest = async (url, config) => {
   try {
     const res = await fetch(serverURL + url, config);
@@ -43,48 +38,47 @@ async function createUser(payload) {
   return apiRequest("/api/user", config);
 }
 
+let username, password;
+
 function makeUserFromPopup() {
-  payload.username = inputLogin.value;
-  payload.password = inputPassword.value;
-  inputUser.value = payload.username;
+  username = inputLogin.value;
+  password = inputPassword.value;
   if (validateUser()) {
-    createUser(payload).then((data) => {
+    createUser({ username, password }).then((data) => {
       console.log(data);
-      AuthUser();
+      AuthUser(username, password);
     });
-    localStorage.setItem("StorageUsername", inputUser.value);
+    localStorage.setItem("StorageUsername", username);
+    inputUser.value = username;
+    hideAllPopup();
   }
 }
 
 function validateUser() {
-  if (payload.username.length >= 2 && payload.password.length >= 4) {
+  if (username.length >= 2 && password.length >= 4) {
     return true;
   }
 }
 
 createUserAccaunt.onclick = function () {
   makeUserFromPopup();
-  hideAllPopup();
 };
 
-async function AuthUser() {
+async function AuthUser(username, password) {
   const config = {
     method: "post",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      username: inputLoginAuth.value,
-      password: inputPasswordAuth.value,
-    }),
+    body: JSON.stringify({ username, password }),
   };
   const data = await apiRequest("/api/user/auth", config);
-
   Cookies.set("token", data.token);
+  inputUser.value = username;
 }
 
 userAuthorization.onclick = function () {
-  AuthUser();
+  AuthUser(inputLoginAuth.value, inputPasswordAuth.value);
   hideAllPopup();
 };
 
@@ -108,19 +102,17 @@ logout_button.onclick = function () {
 };
 
 apply_name_button.onclick = function () {
-  changeName();
+  changeName("vasya11");
   hideAllPopup();
 };
 
-async function changeName() {
-  let payloadNewChatname = { chatname: "vasya1" };
+async function changeName(chatname) {
   const config = {
     method: "patch",
     headers: {
       Authorization: Cookies.get("token"),
     },
-    body: JSON.stringify(payloadNewChatname),
+    body: JSON.stringify({ chatname }),
   };
   const data = await apiRequest("/api/user", config);
-  console.log(data);
 }
