@@ -12,6 +12,11 @@ let payload = {
   password: inputPassword.value,
 };
 
+let payloadAuth = {
+  username: inputLoginAuth.value,
+  password: inputPasswordAuth.value,
+};
+
 const apiRequest = async (url, config) => {
   try {
     const res = await fetch(serverURL + url, config);
@@ -44,7 +49,8 @@ function makeUserFromPopup() {
   inputUser.value = payload.username;
   if (validateUser()) {
     createUser(payload).then((data) => {
-      AuthUser(payload);
+      console.log(data);
+      AuthUser();
     });
     localStorage.setItem("StorageUsername", inputUser.value);
   }
@@ -61,15 +67,19 @@ createUserAccaunt.onclick = function () {
   hideAllPopup();
 };
 
-async function AuthUser(username, password) {
+async function AuthUser() {
   const config = {
     method: "post",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ username, password }),
+    body: JSON.stringify({
+      username: inputLoginAuth.value,
+      password: inputPasswordAuth.value,
+    }),
   };
   const data = await apiRequest("/api/user/auth", config);
+
   Cookies.set("token", data.token);
 }
 
@@ -79,7 +89,7 @@ userAuthorization.onclick = function () {
 };
 
 function checkSession() {
-  if (document.cookie) {
+  if (Cookies.get("token")) {
     hideAllPopup();
   }
 }
@@ -89,6 +99,7 @@ checkSession();
 function hideAllPopup() {
   modalAuth.style.display = "none";
   modalLogIn.style.display = "none";
+  modalSettings.style.display = "none";
 }
 
 logout_button.onclick = function () {
@@ -98,6 +109,7 @@ logout_button.onclick = function () {
 
 apply_name_button.onclick = function () {
   changeName();
+  hideAllPopup();
 };
 
 async function changeName() {
@@ -105,7 +117,7 @@ async function changeName() {
   const config = {
     method: "patch",
     headers: {
-      Authorization: "token",
+      Authorization: Cookies.get("token"),
     },
     body: JSON.stringify(payloadNewChatname),
   };
