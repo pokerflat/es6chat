@@ -110,7 +110,8 @@ async function changeName(chatname) {
   const config = {
     method: "patch",
     headers: {
-      Authorization: Cookies.get("token"),
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${Cookies.get("token")}`,
     },
     body: JSON.stringify({ chatname }),
   };
