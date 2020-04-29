@@ -5,6 +5,7 @@ import {
   inputPassword,
   inputLoginAuth,
   inputPasswordAuth,
+  inputChatname,
 } from "./uielements.js";
 
 let payload = {
@@ -97,18 +98,19 @@ function hideAllPopup() {
 }
 
 logout_button.onclick = function () {
-  document.cookie = "token=;max-age=0";
+  Cookies.remove("token");
   location.reload();
 };
 
 apply_name_button.onclick = function () {
-  changeName("vasya11");
+  changeName(inputChatname.value);
+  localStorage.setItem("StorageUsername", inputChatname.value);
   hideAllPopup();
 };
 
 async function changeName(chatname) {
   const config = {
-    method: "patch",
+    method: "PATCH",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${Cookies.get("token")}`,
@@ -116,4 +118,5 @@ async function changeName(chatname) {
     body: JSON.stringify({ chatname }),
   };
   const data = await apiRequest("/api/user", config);
+  inputUser.value = chatname;
 }
