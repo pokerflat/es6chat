@@ -13,11 +13,12 @@ socket.on("connect", function () {
 export function msgToChat(socket) {
   socket.emit("message", {
     message: inputMsg.value,
-    user: inputUser.value,
-    file: inputFile,
+    //username: inputUser.value,
+    messageid: "16867960780", // фикс для теста
   });
 }
 
 socket.on("message", function (msg) {
+  console.log(msg); // хочу понять, что в составе сообщения
   createUIMessage(msg);
 });

@@ -9,7 +9,7 @@ export function createUIMessage(msg) {
   let container = document.createElement("div");
   let status = document.createElement("div");
 
-  if (msg.user == inputUser.value) {
+  if (msg.username === inputUser.value) {
     newMessage.setAttribute("id", "user_name_message");
     container.setAttribute("id", "container_user");
   } else {
@@ -19,7 +19,8 @@ export function createUIMessage(msg) {
   mytime.setAttribute("id", "time_style");
   let hourMin = new Date().toString().substr(16, 5);
   mytime.innerText = hourMin;
-  newMessage.innerText = msg.user + ": " + msg.message.trim() /*+ msg.file */;
+  newMessage.innerText =
+    msg.messageId + ": " + msg.message /*.trim() */ /*+ msg.file */;
   status.innerText = "Отправлено";
   container.appendChild(newMessage);
   container.appendChild(mytime);

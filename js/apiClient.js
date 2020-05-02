@@ -49,7 +49,7 @@ function makeUserFromPopup() {
       console.log(data);
       AuthUser(username, password);
     });
-    localStorage.setItem("StorageUsername", username);
+
     inputUser.value = username;
     hideAllPopup();
   }
@@ -74,7 +74,8 @@ async function AuthUser(username, password) {
     body: JSON.stringify({ username, password }),
   };
   const data = await apiRequest("/api/user/auth", config);
-  Cookies.set("token", data.token);
+  Cookies.set("at", data.token);
+  localStorage.setItem("StorageUsername", username);
   inputUser.value = username;
 }
 
@@ -84,7 +85,7 @@ userAuthorization.onclick = function () {
 };
 
 function checkSession() {
-  if (Cookies.get("token")) {
+  if (Cookies.get("at")) {
     hideAllPopup();
   }
 }
