@@ -7,6 +7,7 @@ import {
   inputPasswordAuth,
   inputChatname,
 } from "./uielements.js";
+import { socket } from "./client.js";
 
 let payload = {
   username: inputLogin.value,
@@ -81,6 +82,10 @@ async function AuthUser(username, password) {
 
 userAuthorization.onclick = function () {
   AuthUser(inputLoginAuth.value, inputPasswordAuth.value);
+  socket.on("message", function (msg) {
+    console.log(msg); // хочу понять, что в составе сообщения
+    createUIMessage(msg);
+  });
   hideAllPopup();
 };
 
@@ -99,7 +104,7 @@ function hideAllPopup() {
 }
 
 logout_button.onclick = function () {
-  Cookies.remove("token");
+  Cookies.remove("at");
   location.reload();
 };
 
@@ -114,7 +119,7 @@ async function changeName(chatname) {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${Cookies.get("token")}`,
+      Authorization: `Bearer ${Cookies.get("at")}`,
     },
     body: JSON.stringify({ chatname }),
   };

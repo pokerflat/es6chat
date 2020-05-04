@@ -18,7 +18,7 @@ export function msgToChat(socket) {
   });
 }
 
-socket.on("message", function (msg) {
+/*socket.on("message", function (msg) {
   console.log(msg); // хочу понять, что в составе сообщения
   createUIMessage(msg);
-});
+});  */
