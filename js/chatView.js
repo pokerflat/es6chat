@@ -19,8 +19,7 @@ export function createUIMessage(msg) {
   mytime.setAttribute("id", "time_style");
   let hourMin = new Date().toString().substr(16, 5);
   mytime.innerText = hourMin;
-  newMessage.innerText =
-    msg.messageId + ": " + msg.message /*.trim() */ /*+ msg.file */;
+  newMessage.innerText = msg.messageId + ": " + msg.message.trim();
   status.innerText = "Отправлено";
   container.appendChild(newMessage);
   container.appendChild(mytime);
@@ -33,3 +32,9 @@ send_button.onclick = function () {
     msgToChat(socket);
   }
 };
+
+export function hideAllPopup() {
+  modalAuth.style.display = "none";
+  modalLogIn.style.display = "none";
+  modalSettings.style.display = "none";
+}
