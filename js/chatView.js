@@ -1,30 +1,15 @@
 import { socket } from "./client.js";
 import { isMsgNotEmpty } from "./validation.js";
 import { msgToChat } from "./chatController.js";
-import { inputMsg, inputUser } from "./uielements.js";
+import { inputMsg, inputUser, inputChatname } from "./uielements.js";
+import { changeName } from "./apiClient.js";
+import { hourMin, createUIMessage } from "./createMessage.js";
 
-export function createUIMessage(msg) {
-  let newMessage = document.createElement("div");
-  let mytime = document.createElement("div");
-  let container = document.createElement("div");
-  let status = document.createElement("div");
-
-  if (msg.username === inputUser.value) {
-    newMessage.setAttribute("id", "user_name_message");
-    container.setAttribute("id", "container_user");
-  } else {
-    newMessage.setAttribute("id", "bot_name_message");
-    container.setAttribute("id", "container_bot");
+export function checkMessageId(msg) {
+  if ((msg.messageId = msg.username + msg.createdAt)) {
+    let newStatus = document.getElementById("statusMessage");
+    newStatus.innerText = "Доставлено";
   }
-  mytime.setAttribute("id", "time_style");
-  let hourMin = new Date().toString().substr(16, 5);
-  mytime.innerText = hourMin;
-  newMessage.innerText = msg.messageId + ": " + msg.message.trim();
-  status.innerText = "Отправлено";
-  container.appendChild(newMessage);
-  container.appendChild(mytime);
-  container.appendChild(status);
-  document.getElementById("main_field").appendChild(container);
 }
 
 send_button.onclick = function () {
@@ -37,4 +22,20 @@ export function hideAllPopup() {
   modalAuth.style.display = "none";
   modalLogIn.style.display = "none";
   modalSettings.style.display = "none";
+}
+
+apply_name_button.onclick = function () {
+  changeName(inputChatname.value);
+  localStorage.setItem("StorageUsername", inputChatname.value);
+  hideAllPopup();
+};
+
+logout_button.onclick = function () {
+  Cookies.remove("at");
+  location.reload();
+};
+
+export function createMessageId() {
+  let messageId = localStorage.getItem("username") + hourMin;
+  return messageId;
 }
