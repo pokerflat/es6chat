@@ -32,7 +32,7 @@ export async function changeName(chatname) {
     body: JSON.stringify({ chatname }),
   };
   await apiRequest("/api/user", config);
-  inputUser.value = chatname;
+  inputUser.value = chatname;    // todo убрать побочный эффект  
 }
 
 export async function loadLast20Messages() {

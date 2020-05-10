@@ -43,7 +43,7 @@ body {
   padding: 8px;
 }
 
-#main_field {
+#main-field {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -55,23 +55,23 @@ body {
   padding: 8px;
 }
 
-#bot_message {
+#partner-message {
   margin-bottom: 16px;
 }
 
-#user_name_message {
+#user-name-message {
   display: flex;
   align-self: flex-end;
   padding: 8px;
 }
 
-#bot_name_message {
+#partner-name-message {
   display: flex;
   align-self: flex-start;
   padding: 8px;
 }
 
-.send_message {
+.send-message {
   display: flex;
   margin: 8px;
 }
@@ -87,7 +87,7 @@ body {
   padding: 8px;
 }
 
-#send_button {
+#sendButton {
   width: 51px;
   height: 32px;
   border: 1px solid #000000;
@@ -117,7 +117,7 @@ body {
   margin: 8px;
 }
 
-#settings_button {
+#settingButton {
   width: 74px;
   height: 32px;
   border: 1px solid #000000;
@@ -128,7 +128,7 @@ body {
   line-height: 19px;
 }
 
-#logout_button {
+#logoutButton {
   width: 66px;
   height: 32px;
   border: 1px solid #000000;
@@ -141,7 +141,7 @@ body {
   line-height: 19px;
 }
 
-#time_style {
+#time-style {
   align-self: flex-end;
   background: #f7f7f7;
   font-family: Roboto;
@@ -152,17 +152,25 @@ body {
   color: #333333;
 }
 
-#container_user {
+#container-user {
   display: flex;
   flex-direction: column;
   align-self: flex-start;
   background: #f7f7f7;
   margin-bottom: 8px;
 }
-#container_bot {
+#container-partner {
   display: flex;
   flex-direction: column;
   align-self: flex-end;
   background: #f7f7f7;
   margin-bottom: 8px;
+}
+
+.modal-hide {
+  display: none;
+}
+
+.modal-show {
+  display: block;
 }

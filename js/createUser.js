@@ -16,13 +16,13 @@ createUserAccaunt.onclick = function () {
 function makeUserFromPopup() {
   username = inputLogin.value;
   password = inputPassword.value;
-  if (validateUser()) {
-    console.log("test");
-    createUser({ username, password }).then((data) => {
-      console.log(data);
-      AuthUser(username, password);
+  if (!validateUser()) {
+    return}
+    createUser({ username, password }).then(data => {
+      AuthUser(username, password)
+      .catch (console.error('Не авторизовался')
+      )
     });
     inputUser.value = username;
     hideAllPopup();
-  }
 }

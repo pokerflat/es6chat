@@ -11,7 +11,7 @@ p {
   margin: 0;
 }
 
-.wrapper_popup {
+.wrapper-popup {
   display: flex;
   flex-direction: column;
   width: 273px;
@@ -24,7 +24,7 @@ p {
   background: #ffffff;
 }
 
-#name_in_chat {
+#name-in-chat {
   width: 207px;
   height: 32px;
   border: 1px solid #000000;
@@ -37,7 +37,7 @@ p {
   margin-right: 8px;
 }
 
-#apply_name_button {
+#apply-name-button {
   font-family: Roboto;
   font-size: 16px;
   line-height: 19px;
@@ -54,13 +54,13 @@ p {
   display: flex;
 }
 
-#settings_popup {
+#settings-popup {
   margin-top: 16px;
   margin-bottom: 16px;
   display: flex;
 }
 
-#access_field {
+#access-field {
   margin-bottom: 8px;
 }
 

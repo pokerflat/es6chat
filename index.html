@@ -12,8 +12,8 @@
   <body>
     <div class="wrapper">
       <div id="settings">
-        <input id="settings_button" type="submit" value="settings" />
-        <input id="logout_button" type="submit" value="log out" />
+        <input id="settingButton" type="submit" value="settings" />
+        <input id="logoutButton" type="submit" value="log out" />
       </div>
       <input
         type="text"
@@ -22,27 +22,27 @@
         minlength="2"
         placeholder="Your chat name"
       />
-      <div id="main_field">
-        <div class="bot_name"></div>
-        <div id="bot_message"></div>
-        <div id="user_name_message"></div>
+      <div id="main-field">
+        <div class="partner-name"></div>
+        <div id="partner-message"></div>
+        <div id="user-name-message"></div>
       </div>
-      <div class="send_message">
+      <div class="send-message">
         <input type="text" id="message" placeholder="message.." />
-        <input id="send_button" type="submit" value="send" />
+        <input id="sendButton" type="submit" value="send" />
         <!-- <input id="sendFile" type="file" value="..." />      Будет реализовано позже -->
       </div>
     </div>
 
     <div id="modalLogIn">
-      <div class="wrapper_popup">
+      <div class="wrapper-popup">
         <div id="createacc">
           <p>Создать аккаунт</p>
         </div>
         <div id="accessLogIn">
-          <p id="login_field_createuser">Имя(логин)</p>
+          <p id="login-field-createuser">Имя(логин)</p>
           <input type="text" id="loginPopup" />
-          <p id="password_field_createuser">Пароль</p>
+          <p id="password-field-createuser">Пароль</p>
           <input type="text" id="passwordPopup" />
           <input id="createUserAccaunt" type="submit" value="Создать" />
         </div>
@@ -52,14 +52,14 @@
     </div>
 
     <div id="modalAuth">
-      <div class="wrapper_popup">
+      <div class="wrapper-popup">
         <div id="authorization">
           <p>Авторизация</p>
         </div>
         <div id="accessAuth">
-          <p id="login_field_auth_user">Имя(логин)</p>
+          <p id="login-field-auth-user">Имя(логин)</p>
           <input type="text" id="loginPopupAuth" />
-          <p id="password_field_auth_user">Пароль</p>
+          <p id="password-field-auth-user">Пароль</p>
           <input type="text" id="passwordPopupAuth" />
           <input id="userAuthorization" type="submit" value="Войти" />
         </div>
@@ -68,14 +68,14 @@
     </div>
 
     <div id="modalSettings">
-      <div class="wrapper_popup">
-        <div id="settings_popup">
+      <div class="wrapper-popup">
+        <div id="settings-popup">
           <p>Настройки</p>
         </div>
-        <p id="access_field">Имя в чате</p>
+        <p id="access-field">Имя в чате</p>
         <div id="accessSettings">
-          <input type="text" id="name_in_chat" />
-          <input id="apply_name_button" type="submit" value="->" />
+          <input type="text" id="name-in-chat" />
+          <input id="applyNameButton" type="submit" value="->" />
         </div>
       </div>
     </div>

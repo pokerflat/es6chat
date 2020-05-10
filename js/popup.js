@@ -1,13 +1,16 @@
-import { spanEnter, spanRegistration, settingButton } from "./uielements.js";
+import { enterButton, spanRegistration, settingButton } from "./uielements.js";
 
-spanEnter.onclick = function () {
-  modalAuth.style.display = "block";
+enterButton.onclick = function () {
+ // modalAuth.style.display = "block";
+ modalAuth.classList.remove('modal-hide')
+ modalAuth.classList.add('modal-show')
 };
 
 spanRegistration.onclick = function () {
-  modalAuth.style.display = "none";
+  modalAuth.classList.add('modal-hide')
 };
 
 settingButton.onclick = function () {
-  modalSettings.style.display = "block";
+  modalSettings.classList.remove('modal-hide')
+  modalSettings.classList.add('modal-show');
 };

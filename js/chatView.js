@@ -1,9 +1,9 @@
-import { socket } from "./client.js";
+
 import { isMsgNotEmpty } from "./validation.js";
 import { msgToChat } from "./chatController.js";
 import { inputMsg, inputUser, inputChatname } from "./uielements.js";
 import { changeName } from "./apiClient.js";
-import { hourMin, createUIMessage } from "./createMessage.js";
+import { hourMin} from "./createMessage.js";
 
 export function checkMessageId(msg) {
   if ((msg.messageId = msg.username + msg.createdAt)) {
@@ -12,30 +12,38 @@ export function checkMessageId(msg) {
   }
 }
 
-send_button.onclick = function () {
+sendButton.onclick = function () {
+  const msg = {
+    message: inputMsg.value,
+    user: inputUser.value,
+    messageId: createMessageId()
+  }
   if (isMsgNotEmpty(inputMsg)) {
-    msgToChat(socket);
+       msgToChat(msg);
   }
 };
 
 export function hideAllPopup() {
-  modalAuth.style.display = "none";
-  modalLogIn.style.display = "none";
-  modalSettings.style.display = "none";
+
+  modalAuth.classList.add('modal-hide');
+  modalLogIn.classList.add('modal-hide');
+  modalSettings.classList.add('modal-hide');
 }
 
-apply_name_button.onclick = function () {
-  changeName(inputChatname.value);
-  localStorage.setItem("StorageUsername", inputChatname.value);
-  hideAllPopup();
-};
+applyNameButton.onclick = function () {
+  changeName(inputChatname.value)
+    .then ( localStorage.setItem("username", inputChatname.value))
+    .then ( modalSettings.classList.remove('modal-show'))
+    .then (hideAllPopup())
+    .catch(alert)  
+ };
 
-logout_button.onclick = function () {
+logoutButton.onclick = function () {
   Cookies.remove("at");
   location.reload();
 };
 
 export function createMessageId() {
-  let messageId = localStorage.getItem("username") + hourMin;
-  return messageId;
+  return localStorage.getItem("username") + hourMin;
 }
+
