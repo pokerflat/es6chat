@@ -1,28 +1,32 @@
-import { inputUser } from "./uielements.js";
+import { chat, inputMsg } from "./uielements.js";
 
-export let hourMin = new Date().toString().substr(16, 5);
-
-export function createUIMessage(msg) {
-  let Message = document.createElement("div");
-  let time = document.createElement("div");
-  let container = document.createElement("div");
-  let status = document.createElement("div");
-
-  if (msg.username === inputUser.value) {
-    Message.setAttribute("id", "user-name-message");
-    container.setAttribute("id", "container-user");
-  } else {
-    Message.setAttribute("id", "partner-name-message");
-    container.setAttribute("id", "container-partner");
+export class Message {
+  constructor(msg, messageType) {
+      this.msg = msg
+      this.date = new Date()
+      this.person = this.msg.user
+      this.messageType = messageType
+      this.messageId = this.msg.messageId
   }
-  time.setAttribute("id", "time-style");
+    addMessageToChat() {
+      let newMessage = document.createElement('div')
 
-  time.innerText = hourMin;
-  Message.innerText = msg.username + ": " + msg.message;
-  status.innerText = "Отправлено";
-  status.setAttribute("id", "statusMessage");
-  container.appendChild(Message);
-  container.appendChild(time);
-  container.appendChild(status);
-  document.getElementById("main-field").appendChild(container);
+      if (this.messageType == 'output') {
+          newMessage.classList.add('message-output')
+          newMessage.classList.add('sended')
+          newMessage.setAttribute('id', this.messageId)
+      } else {
+          newMessage.classList.add('message-input')
+          this.person = this.msg.chatname
+      }
+        
+      newMessage.innerHTML = '<p class="message-text">'+
+          this.person + ':  ' +
+          this.msg.message + '</p>' +
+          '<p class="message-date">' + 
+          this.date.toTimeString().slice(0,5) +
+          '</p>';
+      chat.append(newMessage);
+      inputMsg.value = '';
+  }
 }

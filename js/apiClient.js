@@ -1,6 +1,7 @@
 import { serverURL } from "./config.js";
 import "./chatController.js";
-import { inputUser } from "./uielements.js";
+import { inputUser, chat } from "./uielements.js";
+
 
 export const apiRequest = async (url, config) => {
   try {
@@ -32,10 +33,9 @@ export async function changeName(chatname) {
     body: JSON.stringify({ chatname }),
   };
   await apiRequest("/api/user", config);
-  inputUser.value = chatname;    // todo убрать побочный эффект  
 }
 
-export async function loadLast20Messages() {
+export async function loadAllMessages() {
   const config = {
     method: "GET",
     headers: {
@@ -43,16 +43,8 @@ export async function loadLast20Messages() {
       "Content-Type": "application/json",
     },
   };
-  return apiRequest("/api/messages?offset=20", config);
+  return apiRequest("/api/messages", config);
 }
 
-/*
-loadLast20Messages().then((data) => {
-  const { messages } = data;
-  console.log(messages);
-  for (let i = 0; i < data.messages.length; i++) {
-    console.log(data.messages[i].username + ":" + data.messages[i].message);
-  }
-});
 
-*/
+

@@ -1,7 +1,6 @@
 import { enterButton, spanRegistration, settingButton } from "./uielements.js";
 
 enterButton.onclick = function () {
- // modalAuth.style.display = "block";
  modalAuth.classList.remove('modal-hide')
  modalAuth.classList.add('modal-show')
 };

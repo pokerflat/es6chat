@@ -11,3 +11,5 @@ export const spanRegistration = document.getElementsByClassName(
   "registration"
 )[0];
 export const settingButton = document.getElementById("settingButton");
+export const chat = document.getElementById("main-field");
+

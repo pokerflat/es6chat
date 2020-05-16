@@ -1,9 +1,9 @@
 import { socket } from "./client.js";
 import "./localstorage.js";
-import "./uielements.js";
+import  "./uielements.js";
 import "./apiClient.js";
-import {  hideAllPopup, checkMessageId } from "./chatView.js";
-import { createUIMessage } from "./createMessage.js";
+import {  hideAllPopup } from "./chatView.js";
+
 
 function checkAuth () {
   if (Cookies.get("at")) {                       
@@ -19,16 +19,17 @@ export function msgToChat(msg) {
 }
 
 function addMessageToChat() { 
-    socket.on("message", function (msg) {
-      createUIMessage(msg);
-      checkMessageId(msg);
-    });
+  socket.on("message", function (msg) {
+    updateStatus(msg);
+  });
 }
 
 addMessageToChat();
 
-
-export function sendMessage(textMessage, id) {
-  socket.emit('message', { message: textMessage, messageId: id});
-  inputMessage.clear();
+function updateStatus(msg) {
+  const outputMessage = document.getElementById(msg.messageId);
+  if (msg.messageId === outputMessage.id) {
+    outputMessage.classList.remove('sended')
+    outputMessage.classList.add('delivered')
+  }
 }

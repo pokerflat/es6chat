@@ -1,16 +1,11 @@
 
 import { isMsgNotEmpty } from "./validation.js";
 import { msgToChat } from "./chatController.js";
-import { inputMsg, inputUser, inputChatname } from "./uielements.js";
-import { changeName } from "./apiClient.js";
-import { hourMin} from "./createMessage.js";
+import { inputMsg, inputUser, inputChatname, chat } from "./uielements.js";
+import { changeName, loadAllMessages } from "./apiClient.js";
+import { Message} from "./createMessage.js";
 
-export function checkMessageId(msg) {
-  if ((msg.messageId = msg.username + msg.createdAt)) {
-    let newStatus = document.getElementById("statusMessage");
-    newStatus.innerText = "Доставлено";
-  }
-}
+
 
 sendButton.onclick = function () {
   const msg = {
@@ -20,6 +15,9 @@ sendButton.onclick = function () {
   }
   if (isMsgNotEmpty(inputMsg)) {
        msgToChat(msg);
+       let outputMessageFromServer = new Message (msg, 'output');
+       outputMessageFromServer.addMessageToChat();
+       chat.scrollTop = chat.scrollHeight;
   }
 };
 
@@ -44,6 +42,26 @@ logoutButton.onclick = function () {
 };
 
 export function createMessageId() {
-  return localStorage.getItem("username") + hourMin;
+  createMessageId.counter++
+  let messageId = localStorage.getItem('username')+createMessageId.counter;
+  return (messageId);
 }
+createMessageId.counter = 0
 
+loadAllMessages()
+.then(data => {
+  const { messages } = data;
+  for(let i = messages.length - 1; i >= 0; i--) {  
+    let oldMessage = document.createElement('div')
+    oldMessage.classList.add('message-output')
+    oldMessage.classList.add('delivered');    
+    oldMessage.innerHTML = '<p class="message-text">'+
+      messages[i].username + ':  ' +
+      messages[i].message + '</p>' +
+      '<p class="message-date">' + 
+      messages[i].createdAt.slice(11, 16) +
+      '</p>';
+   chat.append(oldMessage);
+  }
+})
+.catch(alert)
