@@ -8,8 +8,6 @@ import { apiRequest } from "./apiClient.js";
 userAuthorization.onclick = function () {
   AuthUser(inputLoginAuth.value, inputPasswordAuth.value);
   hideAllPopup();
-
-
 };
 
 export async function AuthUser(username, password) {

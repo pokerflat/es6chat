@@ -31,6 +31,7 @@ export function hideAllPopup() {
 applyNameButton.onclick = function () {
   changeName(inputChatname.value)
     .then ( localStorage.setItem("username", inputChatname.value))
+    .then (inputUser.value=inputChatname.value)
     .then ( modalSettings.classList.remove('modal-show'))
     .then (hideAllPopup())
     .catch(alert)  
