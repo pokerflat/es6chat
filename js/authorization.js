@@ -1,8 +1,7 @@
 import "./localstorage.js";
 import { inputLoginAuth, inputPasswordAuth, inputUser } from "./uielements.js";
-//import {loadAllMessages} from "./apiClient.js";
 import "./popup.js";
-import { hideAllPopup } from "./chatView.js";
+import { hideAllPopup} from "./chatView.js";
 import { apiRequest } from "./apiClient.js";
 
 userAuthorization.onclick = function () {

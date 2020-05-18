@@ -2,10 +2,10 @@
 import { isMsgNotEmpty } from "./validation.js";
 import { msgToChat } from "./chatController.js";
 import { inputMsg, inputUser, inputChatname, chat } from "./uielements.js";
-import { changeName, loadAllMessages } from "./apiClient.js";
+import { changeName, getOldMessages } from "./apiClient.js";
 import { Message} from "./createMessage.js";
 
-
+let counterDownloadedMessages = downloadedMessages(); 
 
 sendButton.onclick = function () {
   const msg = {
@@ -14,15 +14,14 @@ sendButton.onclick = function () {
     messageId: createMessageId()
   }
   if (isMsgNotEmpty(inputMsg)) {
-       msgToChat(msg);
-       let outputMessageFromServer = new Message (msg, 'output');
-       outputMessageFromServer.addMessageToChat();
-       chat.scrollTop = chat.scrollHeight;
+    msgToChat(msg);
+    let outputMessageFromServer = new Message (msg, 'output');
+    outputMessageFromServer.addMessageToChat();
+    chat.scrollTop = chat.scrollHeight;
   }
 };
 
 export function hideAllPopup() {
-
   modalAuth.classList.add('modal-hide');
   modalLogIn.classList.add('modal-hide');
   modalSettings.classList.add('modal-hide');
@@ -49,20 +48,47 @@ export function createMessageId() {
 }
 createMessageId.counter = 0
 
-loadAllMessages()
-.then(data => {
-  const { messages } = data;
-  for(let i = messages.length - 1; i >= 0; i--) {  
-    let oldMessage = document.createElement('div')
-    oldMessage.classList.add('message-output')
-    oldMessage.classList.add('delivered');    
-    oldMessage.innerHTML = '<p class="message-text">'+
-      messages[i].username + ':  ' +
-      messages[i].message + '</p>' +
-      '<p class="message-date">' + 
-      messages[i].createdAt.slice(11, 16) +
-      '</p>';
-   chat.append(oldMessage);
+
+function addOldMessagesToChat(counter) {
+  getOldMessages(counter).then(data => {
+    const { messages } = data;
+    let screenHeight = chat.scrollHeight;
+    for(let i = 0; i < messages.length; i++) {   
+      let oldMessage = document.createElement('div');
+      if(messages[i].username === Cookies.get('username')) {
+       oldMessage.classList.add('message-output') 
+      }
+      else {
+        oldMessage.classList.add('message-input')
+      }
+      oldMessage.classList.add('delivered');    
+      oldMessage.innerHTML = '<p class="message-text">'+
+        messages[i].username + ':  ' +
+        messages[i].message + '</p>' +
+        '<p class="message-date">' + 
+        messages[i].createdAt.slice(11, 16) +
+        '</p>';
+      chat.prepend(oldMessage);
+    }
+    if(counter === undefined) {
+      chat.scrollTop = chat.scrollHeight - chat.clientHeight;
+    } else {
+      chat.scrollTop = chat.scrollHeight - screenHeight;
+    }
+  })
+}
+
+chat.addEventListener('scroll', function() {
+  if(chat.scrollTop === 0) {
+    addOldMessagesToChat(counterDownloadedMessages())
   }
 })
-.catch(alert)
+
+function downloadedMessages() {
+  let counter  = 0;
+  return function () {
+    return counter += 20;
+  }
+}
+
+addOldMessagesToChat();

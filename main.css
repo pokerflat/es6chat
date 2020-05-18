@@ -56,26 +56,6 @@ body {
 }
 
 
-
-
-
-
-#partner-message {
-  margin-bottom: 16px;
-}
-
-#user-name-message {
-  display: flex;
-  align-self: flex-end;
-  padding: 8px;
-}
-
-#partner-name-message {
-  display: flex;
-  align-self: flex-start;
-  padding: 8px;
-}
-
 .send-message {
   display: flex;
   margin: 8px;

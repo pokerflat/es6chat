@@ -1,6 +1,6 @@
 import { serverURL } from "./config.js";
 import "./chatController.js";
-import { inputUser, chat } from "./uielements.js";
+
 
 
 export const apiRequest = async (url, config) => {
@@ -35,16 +35,14 @@ export async function changeName(chatname) {
   await apiRequest("/api/user", config);
 }
 
-export async function loadAllMessages() {
+export const getOldMessages = async (uploadMsg = 0) => {
   const config = {
-    method: "GET",
+    method: 'GET',
     headers: {
       Authorization: `Bearer ${Cookies.get("at")}`,
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
   };
-  return apiRequest("/api/messages", config);
-}
-
-
+  return await apiRequest(`/api/messages?offset=${uploadMsg}`, config);
+};
 
